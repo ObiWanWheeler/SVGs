@@ -43,13 +43,13 @@ const Dial = ({mouseX=0, mouseY=0}) => {
     const { left, top, height, width } = dialEl.current.getBoundingClientRect();
     const [xCenter, yCenter] = [left + (width/2), top + (height/2)];
     const [xDist, yDist] = [mouseX - xCenter, mouseY - yCenter];
-    setAngle(180 + radiansToDegrees(Math.atan2( yDist, xDist )));
+    setAngle(radiansToDegrees(Math.atan2( yDist, xDist )));
   }, [mouseX, mouseY])
   
   return (
     <g ref={dialEl} transform={`rotate(${angle})`}>
       <circle cx={0} cy={0} r={50} fill="grey" stroke="black"/>
-      <circle cx={-35} cy={0} r={5} fill="black" />
+      <circle cx={35} cy={0} r={5} fill="black" />
     </g>
   )
 }
