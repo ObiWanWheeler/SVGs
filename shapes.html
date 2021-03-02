@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Shapes</title>
+</head>
+<body>
+    <h1>Circle</h1>
+    <svg width="200", height="200">
+        <circle 
+            cx=50 
+            cy=50 
+            r=40
+            stroke=green 
+            stroke-width=4 
+            fill=yellow>
+        </circle>
+        <circle
+            cx=100
+            cy=100
+            r=50
+            stroke=red
+            fill=blue
+            stroke-width=3>
+        </circle>
+    </svg>
+    <h1>Rectangle</h1>
+    <!-- shapes are rendered in order of writing -->
+    <svg width=300 height=110>
+        <rect 
+            width=300
+            height=100
+            fill=rgb(0,0,255) 
+            stroke-width=4 
+            stroke=rgb(0,0,0) 
+            fill-opacity=0.5>
+        </rect>
+        <rect
+            x = 100
+            y = 50
+            width=50
+            height=50 
+            fill=rgb(255,0,0) 
+            stroke-width=5 
+            stroke=pink 
+            fill-opacity=0.3 
+            stroke-opacity=0.9>
+        </rect>
+        <rect
+            x=10
+            y=10
+            rx=5
+            ry=5
+            width=75 
+            height=75 
+            fill=rgb(255,0,0) 
+            stroke-width=5 
+            stroke=pink 
+            fill-opacity=0.3 
+            stroke-opacity=0.9>
+        </rect>
+    </svg>
+    <h1>Ellipse</h1>
+    <svg width=100 height=100>
+        <ellipse 
+            cx=50 
+            cy=50 
+            rx=50 
+            ry=25 
+            fill=yellow 
+            stroke=purple 
+            stroke-fill=pink 
+            fill-opacity=0.3>
+        </ellipse>
+        <ellipse 
+            cx=50 
+            cy=50 
+            rx=40 
+            ry=25 
+            fill=yellow 
+            stroke=purple 
+            stroke-fill=pink 
+            fill-opacity=0.3>
+        </ellipse>
+        <ellipse 
+            cx=50 
+            cy=50 
+            rx=30 
+            ry=25 
+            fill=yellow 
+            stroke=purple 
+            stroke-fill=pink 
+            fill-opacity=0.3>
+        </ellipse>
+    </svg>
+    <h1>Lines</h1>
+    <svg width=200 height=200>
+        <line
+            x1=0 
+            y1=0 
+            x2=200
+            y2=200 
+            stroke=red 
+            stroke-width=3>
+        </line>
+    </svg>
+    <h1>Polygons</h1>
+    <svg width=300 height=300>
+        <polygon points="100,10 40,198 190,78 10,78 160,198" 
+            stroke=green 
+            stroke-width=3 
+            fill=purple  
+            fill-rule=evenodd>
+        </polygon>
+        <polygon 
+            points="150,0 300,300 0,300"
+            fill=blue
+            fill-opacity=0.3>
+        </polygon>
+    </svg>
+</body>
+</html>
