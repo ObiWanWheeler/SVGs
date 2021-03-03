@@ -11,8 +11,8 @@ const Room = ({ coords }) => {
     );
     return (
         <g>
-            { walls.map(([coord1, coord2]) => 
-                <line x1={coord1.x} y1={coord1.y} x2={coord2.x} y2={coord2.y} stroke="blue" strokeWidth={80}></line>
+            { walls.map(([coord1, coord2], i) => 
+                <line key={i} x1={coord1.x} y1={coord1.y} x2={coord2.x} y2={coord2.y} stroke="white" strokeWidth={80}></line>
             )}
         </g>
     )
@@ -20,7 +20,7 @@ const Room = ({ coords }) => {
 
 
 const Floorplan = ({ data: {rooms} }) => {
-    return rooms.map(r => <Room {...r}/>)
+    return rooms.map((r, i) => <Room key={i} {...r}/>)
 }
 
 export default Floorplan;
