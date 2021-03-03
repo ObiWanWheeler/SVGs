@@ -7,7 +7,7 @@ const defaultColorScheme = {
 }
 
 const defaultFOV = {
-    range: 10,
+    range: 20,
     angle: 45,
 }
 
@@ -50,12 +50,37 @@ const CameraBody = ({ size, colour }) =>
         fill={colour}
     />
 
-const Camera = ({ x=0, y=0, angle=0, size=250, componentColours=defaultColorScheme, FOVConfig=defaultFOV}) => 
-    <g transform={`translate(${x}, ${y}) rotate(${angle})`}>
+const fillConfigGaps = (givenConfig) => {
+    if (!givenConfig.angle) {
+        givenConfig.angle = defaultFOV.angle;
+    }
+    if (!givenConfig.range) {
+        givenConfig.range = defaultFOV.range;
+    }
+    return givenConfig;
+}
+
+const fillColorSchemeGaps = (givenScheme) => {
+    if (!givenScheme.body) {
+        givenScheme.body = defaultColorScheme.body;
+    }
+    if (!givenScheme.enclosure) {
+        givenScheme.enclosure = defaultColorScheme.enclosure;
+    }
+    if (!givenScheme.fieldOfView) {
+        givenScheme.fieldOfView = defaultColorScheme.fieldOfView;
+    }
+    return givenScheme;
+}
+
+const Camera = ({ x=0, y=0, angle=0, size=150, componentColours, FOVConfig }) => {
+    FOVConfig = fillConfigGaps(FOVConfig);
+    componentColours = fillColorSchemeGaps(componentColours);
+    return (<g transform={`translate(${x}, ${y}) rotate(${angle})`}>
         <CameraEnclosure size={size} colour={componentColours.enclosure} />
         <CameraBody size={size} colour={componentColours.body} />
         <FieldOfView range={FOVConfig.range} angle={FOVConfig.angle} size={size} colour={componentColours.fieldOfView} />
-    </g>
-
+    </g>)
+}
 
 export default Camera;
