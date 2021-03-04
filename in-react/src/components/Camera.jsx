@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { polarToCartesian } from "../helpers/MathFuncs";
 
 const defaultColorScheme = { 
@@ -50,36 +51,20 @@ const CameraBody = ({ size, colour }) =>
         fill={colour}
     />
 
-const fillConfigGaps = (givenConfig) => {
-    if (!givenConfig.angle) {
-        givenConfig.angle = defaultFOV.angle;
-    }
-    if (!givenConfig.range) {
-        givenConfig.range = defaultFOV.range;
-    }
-    return givenConfig;
-}
-
-const fillColorSchemeGaps = (givenScheme) => {
-    if (!givenScheme.body) {
-        givenScheme.body = defaultColorScheme.body;
-    }
-    if (!givenScheme.enclosure) {
-        givenScheme.enclosure = defaultColorScheme.enclosure;
-    }
-    if (!givenScheme.fieldOfView) {
-        givenScheme.fieldOfView = defaultColorScheme.fieldOfView;
-    }
-    return givenScheme;
-}
-
 const Camera = ({ x=0, y=0, angle=0, size=150, componentColours, FOVConfig }) => {
-    FOVConfig = fillConfigGaps(FOVConfig);
-    componentColours = fillColorSchemeGaps(componentColours);
-    return (<g transform={`translate(${x}, ${y}) rotate(${angle})`}>
-        <CameraEnclosure size={size} colour={componentColours.enclosure} />
-        <CameraBody size={size} colour={componentColours.body} />
-        <FieldOfView range={FOVConfig.range} angle={FOVConfig.angle} size={size} colour={componentColours.fieldOfView} />
+
+    const colors = useMemo(() => 
+        Object.assign({}, defaultColorScheme, componentColours)
+    ,[componentColours]);
+
+    const config = useMemo(() => 
+        Object.assign({}, defaultFOV, FOVConfig)
+    ,[FOVConfig])
+
+return (<g transform={`translate(${x}, ${y}) rotate(${angle})`}>
+        <CameraEnclosure size={size} colour={colors.enclosure} />
+        <CameraBody size={size} colour={colors.body} />
+        <FieldOfView range={config.range} angle={config.angle} size={size} colour={colors.fieldOfView} />
     </g>)
 }
 
