@@ -4,7 +4,6 @@ import Ghost from '../components/Ghost.jsx';
 import Dial from '../components/Dial.jsx';
 import Floorplan from '../components/Floorplan';
 import data from '../rooms.json';
-import Camera from '../components/Camera.jsx'
 
 
 const App = () => {
@@ -12,17 +11,23 @@ const App = () => {
 
   return (
     <div className="App" style={{ backgroundColor: 'lightblue'}}>
-      <svg viewBox="0 0 200 200">
-        <Ghost x={50} y={50} colour="blue" onClick={() => alert("woah! blue ghost!")}/>
-        <Ghost x={100} y={100} colour="red" onClick={() => alert("woah! red ghost!")}/>
+      <svg width="500" height="500" viewBox="0 0 200 200">
+        <clipPath id="binoculars">
+          <circle cx={70} cy={70} r={50} />
+          <circle cx={120} cy={110} r={50} />
+        </clipPath>
+        <g clipPath="url(#binoculars)">
+          <rect width="200" height="200" fill="green"></rect>
+          <Ghost x={50} y={50} colour="blue" onClick={() => alert("woah! blue ghost!")}/>
+          <Ghost x={100} y={100} colour="red" onClick={() => alert("woah! red ghost!")}/>
+        </g>
       </svg>
       <svg viewBox="-100 -100 200 200">
         <Dial mouseX={x} mouseY={y} radius={20}/>
+        <Dial mouseX={x} mouseY={y} radius={10} />
       </svg>
-      <svg width="500px" height="500px" viewBox="-7000 -5500 14000 11000">
+      <svg width="1000" height="1000" viewBox="-7000 -5500 14000 11000">
         <Floorplan data={data}/>
-        <Camera x={150} y={150} size={200} FOVConfig={{angle: 90, range: 15}} componentColours={{body: "green", enclosure: "black", fieldOfView: "red"}} angle={45}/>
-        <Camera x={5000} y={5000} angle={-45}/>
       </svg>
     </div>
   );

@@ -19,6 +19,7 @@ const Eyes = ({x, y}) => {
   }
   
   const Ghost = ({x, y, colour, onClick}) => {
+  
     return (
       <g onClick={onClick}>
         <Body x={x} y={y} colour={colour}/>
